@@ -4,7 +4,8 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public int health = 3;
-    public int lives = 3;
+    public static int lives = 3;
+    public static int score = 0;
 
     private float flickerTime = 0f;
     public float flickerDuration = 0.1f;
