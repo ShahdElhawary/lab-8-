@@ -1,11 +1,15 @@
 
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerStats : MonoBehaviour
 {
     public int health = 3;
     public static int lives = 3;
     public static int score = 0;
+    public TextMeshProUGUI scoreUI;
+    public Image healthBar;
 
     private float flickerTime = 0f;
     public float flickerDuration = 0.1f;
@@ -38,7 +42,8 @@ public class PlayerStats : MonoBehaviour
     {
         if (isImmune == false)
         {
-            health -= damage;
+            health = health - damage;
+            healthBar.fillAmount = this.health/3f;
 
             if (health < 0)
             {
@@ -49,6 +54,7 @@ public class PlayerStats : MonoBehaviour
             {
                 FindObjectOfType<levelmanger>().Respawnplayer();
                 health = 3;
+                healthBar.fillAmount = this.health/2f;
                 lives--;
             }
             else if (lives == 0 && health == 0)
@@ -78,6 +84,7 @@ public class PlayerStats : MonoBehaviour
                 isImmune = false;
                 sr.enabled = true;
             }
+            scoreUI.text = " " + score;
         }
     }
 }
